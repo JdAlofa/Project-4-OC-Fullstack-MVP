@@ -1,10 +1,8 @@
-package com.openclassrooms.mddapi.ServicesImpls;
+package com.openclassrooms.mddapi.servImpls;
 
 import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.services.UserService;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.ServicesImpls;
+package com.openclassrooms.mddapi.servImpls;
 
 import java.util.List;
 

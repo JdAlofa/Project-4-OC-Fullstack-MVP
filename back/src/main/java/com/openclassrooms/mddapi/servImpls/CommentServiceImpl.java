@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi.ServicesImpls;
+package com.openclassrooms.mddapi.servImpls;
 
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Comment;
