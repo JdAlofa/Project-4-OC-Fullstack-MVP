@@ -4,6 +4,7 @@ import com.openclassrooms.mddapi.models.User;
 
 public interface UserService {
     User getUserById(Long id);
+    User findByEmail(String email);
 
     User updateUser(Long id, String email, String username, String password);
 
