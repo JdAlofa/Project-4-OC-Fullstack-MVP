@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.dto;
 
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 public class ArticleDto {
@@ -11,4 +12,5 @@ public class ArticleDto {
     private Long themeId;
     private String authorUsername;
     private LocalDateTime createdAt;
+    private List<CommentDto> comments; 
 }

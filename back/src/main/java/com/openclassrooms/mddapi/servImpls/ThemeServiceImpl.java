@@ -37,8 +37,10 @@ public class ThemeServiceImpl implements ThemeService {
         Theme theme = themeRepository.findById(themeId).orElse(null);
 
         if (user != null && theme != null) {
-            user.getThemes().add(theme);
-            userRepository.save(user);
+            if (!user.getThemes().contains(theme)) {
+                user.getThemes().add(theme);
+                userRepository.save(user);
+            }
         }
     }
 

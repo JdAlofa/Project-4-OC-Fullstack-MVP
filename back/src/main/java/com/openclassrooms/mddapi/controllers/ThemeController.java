@@ -4,9 +4,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,8 +19,11 @@ import com.openclassrooms.mddapi.models.User;
 import com.openclassrooms.mddapi.services.ThemeService;
 import com.openclassrooms.mddapi.services.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @RestController
 @RequestMapping("/api/themes")
+@Slf4j
 public class ThemeController {
     private final ThemeService themeService;
     private final ThemeMapper themeMapper;
@@ -42,14 +44,12 @@ public class ThemeController {
         return ResponseEntity.ok(themeDtos);
     }
 
-     @PostMapping("/{themeId}/subscribe")
+    @PostMapping("/{themeId}/subscribe")
     public ResponseEntity<?> subscribe(@PathVariable("themeId") Long themeId) {
         try {
-            // Get the email of the logged-in user from the security context
-            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-            String userEmail = userDetails.getUsername();
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            String userEmail = authentication.getName();
 
-            // Find the user by email to get their ID
             User user = this.userService.findByEmail(userEmail);
             if (user == null) {
                 return ResponseEntity.status(401).body("User not found");
@@ -58,26 +58,9 @@ public class ThemeController {
             themeService.subscribe(user.getId(), themeId);
             return ResponseEntity.ok().build();
         } catch (Exception e) {
+            log.error("Error subscribing to theme", e);
             return ResponseEntity.badRequest().body("Error subscribing to theme");
         }
     }
 
-    @DeleteMapping("/{themeId}/unsubscribe")
-    public ResponseEntity<?> unsubscribe(@PathVariable("themeId") Long themeId) {
-        try {
-            UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication()
-                    .getPrincipal();
-            String userEmail = userDetails.getUsername();
-
-            User user = this.userService.findByEmail(userEmail);
-            if (user == null) {
-                return ResponseEntity.status(401).body("User not found");
-            }
-
-            themeService.unsubscribe(user.getId(), themeId);
-            return ResponseEntity.ok().build();
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().body("Error unsubscribing from theme");
-        }
-    }
 }

@@ -5,6 +5,7 @@ import com.openclassrooms.mddapi.repository.UserRepository;
 import com.openclassrooms.mddapi.services.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -28,23 +29,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User updateUser(Long id, String email, String username, String password) {
-        User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
-        if (!user.getEmail().equals(email) && userRepository.existsByEmail(email)) {
-            throw new RuntimeException("Error: Email is already in use!");
-        }
-        user.setEmail(email);
+    @Transactional
+    public User updateUser(Long id, String email, String username, String password) { // Changed return type to User
+        User userToUpdate = this.userRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("User not found for update"));
 
-        if (!user.getUsername().equals(username) && userRepository.existsByUsername(username)) {
-            throw new RuntimeException("Error: Username is already in use!");
-        }
-        user.setUsername(username);
-
-        if (password != null && !password.isEmpty()) {
-            user.setPassword(passwordEncoder.encode(password));
+        if (email != null && !email.isBlank()) {
+            userToUpdate.setEmail(email);
         }
 
-        return userRepository.save(user);
+        if (username != null && !username.isBlank()) {
+            userToUpdate.setUsername(username);
+        }
+
+        if (password != null && !password.isBlank()) {
+            userToUpdate.setPassword(passwordEncoder.encode(password));
+        }
+
+        return this.userRepository.save(userToUpdate); 
     }
 
     public User registerUser(String email, String username, String password) {

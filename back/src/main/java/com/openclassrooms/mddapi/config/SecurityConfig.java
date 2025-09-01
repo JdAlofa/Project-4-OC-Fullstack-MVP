@@ -1,4 +1,4 @@
-package com.openclassrooms.mddapi;
+package com.openclassrooms.mddapi.config;
 
 import javax.crypto.spec.SecretKeySpec;
 

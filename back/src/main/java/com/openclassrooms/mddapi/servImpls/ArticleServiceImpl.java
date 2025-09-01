@@ -39,7 +39,7 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Article getArticle(Long id) {
-        return articleRepository.findById(id).orElse(null);
+        return this.articleRepository.findByIdWithComments(id).orElse(null);
     }
 
     @Override

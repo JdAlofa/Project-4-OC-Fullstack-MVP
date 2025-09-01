@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -54,5 +55,6 @@ public class User {
             name = "SUBSCRIPTIONS",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "theme_id"))
-    private List<Theme> themes;
+    @Builder.Default
+    private List<Theme> themes= new ArrayList<>();
 }
