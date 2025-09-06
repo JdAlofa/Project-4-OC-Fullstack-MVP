@@ -1,0 +1,124 @@
+.page-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 5px 30px;
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+
+  .logo {
+    height: 100px;
+  }
+}
+
+// This logo is hidden by default on desktop
+.mobile-logo {
+  display: none;
+}
+
+.form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 40px;
+  background-color: #fff;
+  min-height: calc(100vh - 111px);
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 40px;
+
+  mat-icon {
+    font-size: 28px;
+    color: #333;
+  }
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  gap: 1.5rem;
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    label {
+      font-size: 20px;
+      color: #333;
+      font-weight: 400;
+    }
+
+    .form-input {
+      padding: 16px;
+      border: 2px solid #333;
+      border-radius: 8px;
+      font-size: 22px;
+      background-color: #ffffff00;
+      outline: none;
+
+      &:focus {
+        border-color: #7c3aed;
+        background-color: #fff;
+      }
+    }
+  }
+
+  .submit-button {
+    background: #7464bf;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 20px 24px;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 1rem;
+    width: fit-content;
+    align-self: center;
+
+    &:hover {
+      background: #a193d1;
+    }
+  }
+}
+
+// --- Media Query for Mobile ---
+@media (max-width: 768px) {
+  .app-header {
+    display: none;
+  }
+  .mobile-logo {
+    display: block;
+    width: 70%;
+    height: auto;
+    max-width: 490px;
+    margin-top: 5rem;
+  }
+
+  .form-container {
+    justify-content: flex-start;
+  }
+
+  .login-form {
+    max-width: 90%;
+  }
+}

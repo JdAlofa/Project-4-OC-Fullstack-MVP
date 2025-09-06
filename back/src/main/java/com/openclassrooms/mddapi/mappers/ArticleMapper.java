@@ -12,4 +12,4 @@ public interface ArticleMapper {
     @Mapping(source = "content", target = "content")
     ArticleDto toDto(Article article);
 
-} 
+}

@@ -1,0 +1,113 @@
+.page-container {
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  padding: 5px 30px;
+  border-bottom: 1px solid #ccc;
+  background-color: #fff;
+}
+.app-header .logo {
+  height: 100px;
+}
+
+.mobile-logo {
+  display: none;
+}
+
+.form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 40px;
+  background-color: #fff;
+  min-height: calc(100vh - 111px);
+}
+
+.back-button {
+  position: absolute;
+  top: 2rem;
+  left: 40px;
+}
+.back-button mat-icon {
+  font-size: 28px;
+  color: #333;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 320px;
+  gap: 1.5rem;
+}
+.login-form .form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.login-form .form-field label {
+  font-size: 20px;
+  color: #333;
+  font-weight: 400;
+}
+.login-form .form-field .form-input {
+  padding: 16px;
+  border: 2px solid #333;
+  border-radius: 8px;
+  font-size: 22px;
+  background-color: rgba(255, 255, 255, 0);
+  outline: none;
+}
+.login-form .form-field .form-input:focus {
+  border-color: #7c3aed;
+  background-color: #fff;
+}
+.login-form .submit-button {
+  background: #7464bf;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 20px 24px;
+  font-size: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 1rem;
+  width: -moz-fit-content;
+  width: fit-content;
+  align-self: center;
+}
+.login-form .submit-button:hover {
+  background: #a193d1;
+}
+
+@media (max-width: 768px) {
+  .app-header {
+    display: none;
+  }
+  .mobile-logo {
+    display: block;
+    width: 70%;
+    height: auto;
+    max-width: 490px;
+    margin-top: 5rem;
+  }
+  .form-container {
+    justify-content: flex-start;
+  }
+  .login-form {
+    max-width: 90%;
+  }
+}
