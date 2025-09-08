@@ -1,0 +1,55 @@
+<header class="app-header">
+  <img
+    class="logo"
+    src="/assets/logo_p6.png"
+    alt="logo"
+    routerLink="/articles"
+  />
+
+  <nav class="main-nav">
+    <button class="logout-button">Logout</button>
+    <a routerLink="/articles" routerLinkActive="active-link">Articles</a>
+    <a routerLink="/themes" routerLinkActive="active-link">Thèmes</a>
+    <a class="profile-link" routerLink="/me" routerLinkActive="active-link">
+      <mat-icon>account_circle</mat-icon>
+    </a>
+  </nav>
+
+  <button mat-icon-button class="hamburger-menu" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</header>
+
+<!-- Side Menu for Mobile -->
+<div class="side-menu" [class.open]="isMenuOpen">
+  <div class="side-menu-content">
+    <div class="top-links">
+      <button class="logout-button" (click)="toggleMenu()">
+        Logout
+      </button>
+      <a
+        routerLink="/articles"
+        routerLinkActive="active-link"
+        (click)="toggleMenu()"
+        >Articles</a
+      >
+      <a
+        routerLink="/themes"
+        routerLinkActive="active-link"
+        (click)="toggleMenu()"
+        >Themes</a
+      >
+    </div>
+    <a
+      class="profile-link"
+      routerLink="/me"
+      routerLinkActive="active-link"
+      (click)="toggleMenu()"
+    >
+      <mat-icon>account_circle</mat-icon>
+    </a>
+  </div>
+</div>
+
+<!-- Overlay for when the menu is open -->
+<div class="overlay" [class.open]="isMenuOpen" (click)="toggleMenu()"></div>

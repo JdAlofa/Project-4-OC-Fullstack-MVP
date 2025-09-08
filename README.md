@@ -14,12 +14,19 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-### Where to start
 
-As you may have seen if you already started the app, a simple home page containing a logo, a title and a button is available. If you take a look at its code (in the `home.component.html`) you will see that an external UI library is already configured in the project.
+## Back
 
-This library is `@angular/material`, it's one of the most famous in the angular ecosystem. As you can see on their docs (https://material.angular.io/), it contains a lot of highly customizable components that will help you design your interfaces quickly.
+Run the backend server with `mvn spring-boot:run`.
 
-Note: I recommend to use material however it's not mandatory, if you prefer you can get rid of it.
+### Swagger
 
-Good luck!
+Access the Swagger UI at the following URL: [http://localhost:8080/swagger-ui/index.html#/](http://localhost:8080/swagger-ui/index.html#/)
+
+### Test User
+
+A test user should have been created with the following credentials:
+
+-   **Email**: `testuser@example.com`
+-   **Username**: `testuser`
+-   **Password**: `password`

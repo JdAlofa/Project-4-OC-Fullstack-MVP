@@ -7,21 +7,35 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
 
-
+import { ThemesComponent } from './pages/themes/themes.component';
+import { ArticlesComponent } from './pages/articles/articles.component';
+import { ArticleComponent } from './pages/article/article.component';
+import { UserComponent } from './pages/user/user.component';
+import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LoginComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
+    ThemesComponent,
+    ArticlesComponent,
+    ArticleComponent,
+    UserComponent,
+    NavbarComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatButtonModule,
     MatIconModule,
-    MatFormFieldModule
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent],

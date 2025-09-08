@@ -1,0 +1,61 @@
+.page-container {
+  background-color: #fff;
+  min-height: 100vh;
+}
+
+.themes-container {
+  padding: 3rem 2rem;
+
+}
+
+.themes-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.theme-card {
+  background-color: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+    flex-grow: 1;
+  }
+
+  button {
+    margin-top: 1rem;
+    padding: 8px 24px; 
+    font-size: 1rem;
+    border-radius: 6px;
+    width: fit-content; 
+    align-self: center;
+  }
+}
+
+// --- Media Query for Mobile ---
+@media (max-width: 768px) {
+  .themes-container {
+    padding: 2rem 1rem;
+  }
+
+  .themes-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

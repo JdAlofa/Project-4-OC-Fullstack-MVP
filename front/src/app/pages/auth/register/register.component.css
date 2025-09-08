@@ -36,6 +36,8 @@
 .back-button mat-icon {
   font-size: 28px;
   color: #333;
+  background-color: rgba(243, 243, 243, 0);
+  background: rgba(243, 243, 243, 0);
 }
 
 h1 {
