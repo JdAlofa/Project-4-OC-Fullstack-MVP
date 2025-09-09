@@ -93,6 +93,13 @@ h1 {
   background: #a193d1;
 }
 
+.error-message {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 4px;
+  align-self: flex-start;
+}
+
 @media (max-width: 768px) {
   .app-header {
     display: none;

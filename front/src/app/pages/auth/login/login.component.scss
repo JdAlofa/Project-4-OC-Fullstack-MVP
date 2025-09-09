@@ -101,6 +101,13 @@ h1 {
   }
 }
 
+.error-message {
+  color: #d32f2f;
+  font-size: 14px;
+  margin-top: 4px;
+  align-self: flex-start; 
+}
+
 // --- Media Query for Mobile ---
 @media (max-width: 768px) {
   .app-header {

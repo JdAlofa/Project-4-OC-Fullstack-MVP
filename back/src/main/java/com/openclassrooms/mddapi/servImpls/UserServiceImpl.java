@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public User updateUser(Long id, String email, String username, String password) { // Changed return type to User
+    public User updateUser(Long id, String email, String username, String password) { 
         User userToUpdate = this.userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User not found for update"));
 

@@ -1,8 +1,7 @@
 <div class="page-container">
-   <header class="app-header">
+  <header class="app-header">
     <img class="logo" src="/assets/logo_p6.png" alt="logo" />
   </header>
-
 
   <main class="form-container">
     <button mat-icon-button class="back-button" routerLink="/">
@@ -10,21 +9,25 @@
     </button>
     <!-- This logo will only be shown on mobile -->
     <img class="mobile-logo" src="/assets/logo_p6.png" alt="logo" />
-    
+
     <h1>Login form</h1>
 
-    <form class="login-form">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
       <div class="form-field">
-        <label>E-mail or Username</label>
-        <input type="text" class="form-input" />
+        <label for="emailOrUsername">E-mail or Username</label>
+        <input id="emailOrUsername" type="text" class="form-input" formControlName="emailOrUsername" />
       </div>
 
       <div class="form-field">
-        <label>Password</label>
-        <input type="password" class="form-input" />
+        <label for="password">Password</label>
+        <input id="password" type="password" class="form-input" formControlName="password" />
       </div>
 
-      <button type="submit" class="submit-button">
+      <div *ngIf="onError" class="error-message">
+        An error occurred. Please check your credentials.
+      </div>
+
+      <button type="submit" class="submit-button" [disabled]="form.invalid">
         Login
       </button>
     </form>

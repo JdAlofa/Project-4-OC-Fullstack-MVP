@@ -1,8 +1,7 @@
 <div class="page-container">
-   <header class="app-header">
+  <header class="app-header">
     <img class="logo" src="/assets/logo_p6.png" alt="logo" />
   </header>
-
 
   <main class="form-container">
     <button mat-icon-button class="back-button" routerLink="/">
@@ -10,22 +9,30 @@
     </button>
     <!-- This logo will only be shown on mobile -->
     <img class="mobile-logo" src="/assets/logo_p6.png" alt="logo" />
-    
+
     <h1>Registration form</h1>
 
-    <form class="login-form">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="login-form">
       <div class="form-field">
-        <label>Username</label>
-        <input type="text" class="form-input" />
-      </div>
-      <div class="form-field">
-        <label>E-mail</label>
-        <input type="text" class="form-input" />
+        <label for="username">Username</label>
+        <input type="text" id="username" class="form-input" formControlName="username" />
       </div>
 
       <div class="form-field">
-        <label>Password</label>
-        <input type="password" class="form-input" />
+        <label for="email">E-mail</label>
+        <input type="email" id="email" class="form-input" formControlName="email" />
+      </div>
+
+      <div class="form-field">
+        <label for="password">Password</label>
+        <input type="password" id="password" class="form-input" formControlName="password" />
+        <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="error-message">
+          Password must be at least 8 characters long and contain an uppercase letter, a lowercase letter, a number, and a special character.
+        </div>
+      </div>
+
+      <div *ngIf="onError" class="error-message">
+        An error occurred.
       </div>
 
       <button type="submit" class="submit-button">
