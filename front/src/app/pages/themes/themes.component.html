@@ -3,35 +3,24 @@
 
   <main class="themes-container">
     <div class="themes-grid">
-      <!-- Card 1 -->
-      <div class="theme-card">
-        <h2>Java</h2>
-        <p>Discussions about Java, Spring, and the JVM ecosystem.</p>
-        <button mat-flat-button color="primary">Subscribe</button>
-      </div>
+      <!-- Loop through each theme and create a card -->
+      <div *ngFor="let theme of allThemes" class="theme-card">
+        <h2>{{ theme.title }}</h2>
+        <p>{{ theme.description }}</p>
 
-      <!-- Card 2 -->
-      <div class="theme-card">
-        <h2>JavaScript</h2>
-        <p>All things JavaScript: React, Angular, Vue, Node.js, and more.</p>
-        <button mat-flat-button color="primary">Subscribe</button>
-      </div>
-
-      <!-- Card 3 (Subscribed State) -->
-      <div class="theme-card">
-        <h2>Databases</h2>
-        <p>Topics related to SQL, NoSQL, performance, and data modeling.</p>
-        <button mat-flat-button disabled>Subscribe</button>
-      </div>
-
-      <!-- Card 4 (Subscribed State) -->
-      <div class="theme-card">
-        <h2>DevOps</h2>
-        <p>
-          Continuous integration, delivery, Docker, Kubernetes, and cloud
-          infrastructure.
-        </p>
-        <button mat-flat-button disabled>Subscribe</button>
+        <!-- Conditionally display the 'Subscribe' or 'Subscribed' button -->
+        <ng-container *ngIf="!isSubscribed(theme.id)">
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="subscribeToTheme(theme.id)"
+          >
+            Subscribe
+          </button>
+        </ng-container>
+        <ng-container *ngIf="isSubscribed(theme.id)">
+          <button mat-flat-button disabled>Subscribed</button>
+        </ng-container>
       </div>
     </div>
   </main>

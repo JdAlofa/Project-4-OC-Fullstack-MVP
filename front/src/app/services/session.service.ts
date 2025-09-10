@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Router } from '@angular/router'; 
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class SessionService {
+
   public isLogged = new BehaviorSubject<boolean>(this.hasToken());
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { } 
 
   private hasToken(): boolean {
     return !!localStorage.getItem('token');
