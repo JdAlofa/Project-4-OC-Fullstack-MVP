@@ -1,1 +1,53 @@
-<p>create-article works!</p>
+<div class="page-container">
+  <app-navbar></app-navbar>
+
+  <main class="form-container">
+    <button
+      mat-icon-button
+      class="back-button"
+      [disableRipple]="true"
+      (click)="goBack()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <h1>Create a new article</h1>
+
+    <form [formGroup]="articleForm" (ngSubmit)="submit()" class="article-form">
+      <div class="form-field">
+        <select formControlName="themeId" class="form-input">
+          <option value="" disabled selected>Select a theme</option>
+          <option *ngFor="let theme of themes$ | async" [value]="theme.id">
+            {{ theme.title }}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <input
+          type="text"
+          formControlName="title"
+          class="form-input"
+          placeholder="Article title"
+        />
+      </div>
+
+      <div class="form-field">
+        <textarea
+          formControlName="content"
+          class="form-input content-area"
+          placeholder="Article content"
+        ></textarea>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="articleForm.invalid"
+        mat-flat-button
+        color="primary"
+      >
+        Create
+      </button>
+    </form>
+  </main>
+</div>
