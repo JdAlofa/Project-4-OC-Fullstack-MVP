@@ -7,7 +7,7 @@
   />
 
   <nav class="main-nav">
-    <button class="logout-button">Logout</button>
+    <button class="logout-button" (click)="logout()">Logout</button>
     <a routerLink="/articles" routerLinkActive="active-link">Articles</a>
     <a routerLink="/themes" routerLinkActive="active-link">Thèmes</a>
     <a class="profile-link" routerLink="/me" routerLinkActive="active-link">
@@ -24,9 +24,7 @@
 <div class="side-menu" [class.open]="isMenuOpen">
   <div class="side-menu-content">
     <div class="top-links">
-      <button class="logout-button" (click)="logout()">
-        Logout
-      </button>
+      <button class="logout-button" (click)="logout()">Logout</button>
       <a
         routerLink="/articles"
         routerLinkActive="active-link"

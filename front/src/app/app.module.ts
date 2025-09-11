@@ -4,6 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
@@ -18,6 +19,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { RegisterComponent } from './pages/auth/register/register.component';
+import { CreateArticleComponent } from './pages/articles/create-article/create-article.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
     ArticleComponent,
     UserComponent,
     NavbarComponent,
+    CreateArticleComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { RegisterComponent } from './pages/auth/register/register.component';
     BrowserAnimationsModule,
     MatIconModule,
     MatButtonModule,
+    MatMenuModule,
     ReactiveFormsModule,
     HttpClientModule
   ],

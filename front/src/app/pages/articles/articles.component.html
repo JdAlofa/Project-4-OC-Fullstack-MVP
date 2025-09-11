@@ -1,4 +1,40 @@
 <div class="page-container">
-<app-navbar></app-navbar>
+  <app-navbar></app-navbar>
 
+  <main class="articles-container">
+    <div class="actions-bar">
+      <button mat-flat-button color="primary" (click)="createArticle()">
+        Create an article
+      </button>
+      <div class="sort-container">
+        <button mat-button [matMenuTriggerFor]="sortMenu" class="sort-button">
+          Sort by
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #sortMenu="matMenu">
+          <button mat-menu-item (click)="changeSortOrder('desc')">
+            <span>Date (recent)</span>
+          </button>
+          <button mat-menu-item (click)="changeSortOrder('asc')">
+            <span>Date (oldest)</span>
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+
+    <div class="articles-grid" *ngIf="articles$ | async as articles">
+      <div
+        *ngFor="let article of articles"
+        class="article-card"
+        (click)="viewArticle(article.id)"
+      >
+        <h2>{{ article.title }}</h2>
+        <div class="meta">
+          <span>{{ article.createdAt | date : "longDate" }}</span>
+          <span>{{ article.authorUsername }}</span>
+        </div>
+        <p class="content">{{ article.content }}</p>
+      </div>
+    </div>
+  </main>
 </div>
