@@ -10,6 +10,7 @@ public class ArticleDto {
     private String title;
     private String content;
     private Long themeId;
+    private String themeTitle;
     private String authorUsername;
     private LocalDateTime createdAt;
     private List<CommentDto> comments; 

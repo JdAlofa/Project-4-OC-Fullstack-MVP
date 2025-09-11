@@ -5,6 +5,7 @@ export interface Article {
     title: string;
     content: string;
     themeId: number;
+    themeTitle: string;
     authorUsername: string;
     createdAt: string;
     comments: Comment[];

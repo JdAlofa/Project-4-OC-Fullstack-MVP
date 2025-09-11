@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 public interface ArticleMapper {
     @Mapping(source = "user.username", target = "authorUsername")
     @Mapping(source = "theme.id", target = "themeId")
+    @Mapping(source = "theme.title", target = "themeTitle")
     @Mapping(source = "content", target = "content")
     ArticleDto toDto(Article article);
 

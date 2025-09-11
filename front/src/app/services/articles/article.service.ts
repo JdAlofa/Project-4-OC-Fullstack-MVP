@@ -14,4 +14,13 @@ export class ArticleService {
   public getFeed(): Observable<Article[]> {
     return this.httpClient.get<Article[]>(this.pathService);
   }
+
+   public getArticle(id: string): Observable<Article> {
+    return this.httpClient.get<Article>(`${this.pathService}/${id}`);
+  }
+
+  public postComment(articleId: string, content: string): Observable<Comment> {
+    const body = { content };
+    return this.httpClient.post<Comment>(`${this.pathService}/${articleId}/comments`, body);
+  }
 }

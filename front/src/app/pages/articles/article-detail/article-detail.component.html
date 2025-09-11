@@ -1,0 +1,57 @@
+<div class="page-container">
+  <app-navbar></app-navbar>
+
+  <main *ngIf="article" class="article-detail-container">
+    <button
+      mat-icon-button
+      class="back-button"
+      (click)="goBack()"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <h1 class="title">{{ article.title }}</h1>
+
+    <div class="meta">
+      <span>{{ article.createdAt | date : "longDate" }}</span>
+      <span>Written by: {{ article.authorUsername }}</span>
+      <span>Theme: {{ article.themeTitle }}</span>
+    </div>
+
+    <p class="content">{{ article.content }}</p>
+
+    <mat-divider></mat-divider>
+
+    <section class="comments-section">
+      <h2>Comments</h2>
+
+      <div *ngFor="let comment of article.comments" class="comment">
+        <span class="comment-author">{{ comment.authorUsername }}</span>
+        <div class="comment-content">
+          <p>{{ comment.content }}</p>
+        </div>
+      </div>
+
+      <form
+        [formGroup]="commentForm"
+        (ngSubmit)="submitComment()"
+        class="comment-form"
+      >
+        <div class="form-field">
+          <textarea
+            class="form-input"
+            formControlName="content"
+            placeholder="Write your comment here"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="send-button"
+          [disabled]="commentForm.invalid"
+        >
+          <mat-icon>send</mat-icon>
+        </button>
+      </form>
+    </section>
+  </main>
+</div>
