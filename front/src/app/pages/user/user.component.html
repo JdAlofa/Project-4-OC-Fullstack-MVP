@@ -1,4 +1,69 @@
 <div class="page-container">
-<app-navbar></app-navbar>
+  <app-navbar></app-navbar>
 
+  <main class="profile-container" *ngIf="user">
+    <section class="profile-form-section">
+      <h1>User Profile</h1>
+      <form
+        [formGroup]="profileForm"
+        (ngSubmit)="submit()"
+        class="profile-form"
+      >
+        <div class="form-field">
+          <input
+            type="text"
+            formControlName="username"
+            class="form-input"
+            placeholder="Username"
+          />
+        </div>
+        <div class="form-field">
+          <input
+            type="email"
+            formControlName="email"
+            class="form-input"
+            placeholder="Email"
+          />
+        </div>
+        <div class="form-field">
+          <input
+            type="password"
+            formControlName="password"
+            class="form-input"
+            placeholder="Password (leave blank to keep current)"
+          />
+        </div>
+        <button
+          type="submit"
+          [disabled]="profileForm.invalid"
+          mat-flat-button
+          color="primary"
+        >
+          Save
+        </button>
+      </form>
+      <div *ngIf="updateSuccess" class="success-message">
+        Profile updated successfully!
+      </div>
+    </section>
+
+    <mat-divider></mat-divider>
+
+    <section class="subscriptions-section">
+      <h2>Subscriptions</h2>
+      <div class="themes-grid">
+        <div *ngFor="let theme of user.themes" class="theme-card">
+          <h3>{{ theme.title }}</h3>
+          <p>{{ theme.description }}</p>
+          <button
+            mat-flat-button
+            color="primary"
+            (click)="unsubscribe(theme.id)"
+          >
+            Unsubscribe
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
 </div>

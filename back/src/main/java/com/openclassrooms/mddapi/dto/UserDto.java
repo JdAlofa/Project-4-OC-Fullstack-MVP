@@ -11,5 +11,5 @@ public class UserDto {
     private String username;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private List<Long> themeIds; 
+    private List<ThemeDto> themes;
 }
