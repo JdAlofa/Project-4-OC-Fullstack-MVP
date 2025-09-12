@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginRequest } from 'src/app/interfaces/authInterfaces/loginRequest';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { SessionService } from 'src/app/services/session/session-service.service';
+import { SessionService } from 'src/app/services/session/session.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,6 @@ export class LoginComponent {
     this.authService.login(loginRequest).subscribe({
       next: (response) => {
         this.sessionService.logIn(response.token);
-        this.router.navigate(['/articles']);
       },
       error: (error) => (this.onError = true),
     });

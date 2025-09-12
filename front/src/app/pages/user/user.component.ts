@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SessionService } from 'src/app/services/session.service';
+import { SessionService } from 'src/app/services/session/session.service';
 import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -14,14 +14,11 @@ export class UserComponent implements OnInit {
   public profileForm: FormGroup;
   public updateSuccess = false;
 
-   constructor(
-    private fb: FormBuilder,
-    private userService: UserService
-  ) {
+  constructor(private fb: FormBuilder, private userService: UserService) {
     this.profileForm = this.fb.group({
-      username: [''], 
+      username: [''],
       email: ['', [Validators.email]],
-      password: ['']
+      password: [''],
     });
   }
 
@@ -30,27 +27,27 @@ export class UserComponent implements OnInit {
   }
 
   private fetchUser(): void {
-    this.userService.get().subscribe(user => {
+    this.userService.get().subscribe((user) => {
       this.user = user;
       // This pre-fills the form with the user's current data
       this.profileForm.patchValue(user);
     });
   }
 
- public submit(): void {
+  public submit(): void {
     if (this.profileForm.valid) {
       const updatedUser = this.profileForm.value;
-      
+
       if (!updatedUser.password) {
         delete updatedUser.password;
       }
-      
+
       this.userService.update(updatedUser).subscribe(() => {
         console.log('Profile updated successfully');
         // Re-fetch user to ensure data is fresh, especially if username changed
-        this.fetchUser(); 
+        this.fetchUser();
         this.updateSuccess = true;
-        setTimeout(()=> this.updateSuccess= false, 3000);
+        setTimeout(() => (this.updateSuccess = false), 3000);
       });
     }
   }
@@ -60,6 +57,4 @@ export class UserComponent implements OnInit {
       this.fetchUser();
     });
   }
-
- 
 }

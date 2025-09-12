@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { SessionService } from '../session.service';
+import { SessionService } from '../session/session.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
