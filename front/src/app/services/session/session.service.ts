@@ -17,7 +17,7 @@ export class SessionService {
   public logIn(token: string): void {
     localStorage.setItem('token', token);
     this.isLogged.next(true);
-    this.router.navigate(['/articles']);
+    this.router.navigate(['/themes']);
   }
 
   public logOut(): void {
