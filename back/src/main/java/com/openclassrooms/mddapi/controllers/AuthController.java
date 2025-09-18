@@ -27,6 +27,11 @@ public class AuthController {
         this.userService = userService;
     }
 
+    /**
+     * Handles user authentication and returns a JWT token upon successful login.
+     * @param loginRequest The login request containing the user's credentials.
+     * @return A ResponseEntity containing the JWT token.
+     */
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(
@@ -36,6 +41,11 @@ public class AuthController {
         return ResponseEntity.ok(Map.of("token", jwt));
     }
 
+    /**
+     * Handles new user registration.
+     * @param registerRequest The registration request containing the new user's details.
+     * @return A ResponseEntity with a success or error message.
+     */
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
         try {

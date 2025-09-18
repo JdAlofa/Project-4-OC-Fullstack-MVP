@@ -41,6 +41,11 @@ public class ArticleController {
         this.commentMapper = commentMapper;
     }
 
+    /**
+     * Retrieves the feed of articles for the authenticated user.
+     * The feed consists of articles from themes the user is subscribed to.
+     * @return ResponseEntity containing a list of ArticleDto.
+     */
     @GetMapping
     public ResponseEntity<List<ArticleDto>> getFeed() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -54,6 +59,11 @@ public class ArticleController {
         return ResponseEntity.ok(feedDtos);
     }
 
+    /**
+     * Retrieves a specific article by its ID.
+     * @param id The ID of the article.
+     * @return ResponseEntity containing the ArticleDto if found, otherwise 404 Not Found.
+     */
     @GetMapping("/{id}")
     public ResponseEntity<ArticleDto> getArticle(@PathVariable Long id) {
         Article article = articleService.getArticle(id);
@@ -63,6 +73,12 @@ public class ArticleController {
         return ResponseEntity.ok(articleMapper.toDto(article));
     }
 
+    /**
+     * Creates a new article.
+     * The author is the currently authenticated user.
+     * @param createArticleDto DTO containing the new article's data.
+     * @return ResponseEntity containing the created ArticleDto with a 201 Created status.
+     */
     @PostMapping
     public ResponseEntity<ArticleDto> createArticle(@Valid @RequestBody CreateArticleDto createArticleDto) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -80,6 +96,13 @@ public class ArticleController {
         return new ResponseEntity<>(responseDto, HttpStatus.CREATED);
     }
 
+    /**
+     * Adds a new comment to a specific article.
+     * The author of the comment is the currently authenticated user.
+     * @param id The ID of the article to comment on.
+     * @param createCommentDto DTO containing the comment's content.
+     * @return ResponseEntity containing the created CommentDto.
+     */
     @PostMapping("/{id}/comments")
     public ResponseEntity<CommentDto> createComment(@PathVariable Long id,
             @Valid @RequestBody CreateCommentDto createCommentDto) {

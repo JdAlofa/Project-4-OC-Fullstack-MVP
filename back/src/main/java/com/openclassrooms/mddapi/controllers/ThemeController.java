@@ -35,6 +35,11 @@ public class ThemeController {
         this.themeService = themeService;
     }
 
+    /**
+     * Retrieves a list of all available themes.
+     * 
+     * @return ResponseEntity containing a list of all themes as ThemeDto objects.
+     */
     @GetMapping
     public ResponseEntity<List<ThemeDto>> getAllThemes() {
         List<Theme> themes = themeService.getAllThemes();
@@ -44,6 +49,12 @@ public class ThemeController {
         return ResponseEntity.ok(themeDtos);
     }
 
+    /**
+     * Retrieves the list of themes to which the current user is subscribed.
+     * 
+     * @return ResponseEntity containing a list of subscribed themes as ThemeDto
+     *         objects.
+     */
     @GetMapping("/subscriptions")
     public ResponseEntity<List<ThemeDto>> getSubscribedThemes() {
         try {
@@ -66,6 +77,12 @@ public class ThemeController {
 
     }
 
+    /**
+     * Subscribes the authenticated user to a specific theme.
+     * 
+     * @param themeId The ID of the theme to subscribe to.
+     * @return ResponseEntity with an OK status on success.
+     */
     @PostMapping("/{themeId}/subscribe")
     public ResponseEntity<?> subscribe(@PathVariable("themeId") Long themeId) {
         try {

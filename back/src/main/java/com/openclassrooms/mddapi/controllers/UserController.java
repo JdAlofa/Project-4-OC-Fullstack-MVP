@@ -29,12 +29,21 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
+    /**
+     * Retrieves the profile of the currently authenticated user.
+     * @return ResponseEntity with the user's profile data.
+     */
     @GetMapping("/me")
     public ResponseEntity<UserDto> getMyProfile() {
         User user = getCurrentUser();
         return ResponseEntity.ok(userMapper.toDto(user));
     }
 
+    /**
+     * Updates the profile of the currently authenticated user.
+     * @param userUpdateDto DTO containing the updated user information.
+     * @return ResponseEntity indicating the success of the operation.
+     */
     @PutMapping("/me")
     public ResponseEntity<?> updateMyProfile(@Valid @RequestBody UserUpdateDto userUpdateDto) {
         User user = getCurrentUser();
@@ -43,6 +52,11 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
+    /**
+     * Unsubscribes the currently authenticated user from a specific theme.
+     * @param themeId The ID of the theme to unsubscribe from.
+     * @return ResponseEntity indicating the success of the operation.
+     */
     @DeleteMapping("/me/subscriptions/{themeId}")
     public ResponseEntity<?> unsubscribeFromTheme(@PathVariable Long themeId) {
         User user = getCurrentUser();
@@ -51,9 +65,14 @@ public class UserController {
     }
 
   
+    /**
+     * Retrieves the User entity for the currently authenticated user.
+     * @return The User object.
+     */
     private User getCurrentUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userEmail = authentication.getName();
         return this.userService.findByEmail(userEmail);
     }
 }
+
